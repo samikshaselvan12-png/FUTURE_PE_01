@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex NEET-JEE Academy — Bangalore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12192B;
+    --ink-2:#1C2540;
+    --paper:#EDEAE0;
+    --paper-2:#E3E0D2;
+    --gold:#E29A3C;
+    --gold-dim:#c9843a;
+    --crimson:#B23A32;
+    --slate:#333B4D;
+    --slate-soft:#5B6478;
+    --line: rgba(18,25,43,0.14);
+    --line-light: rgba(237,234,224,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--slate);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    color:var(--ink);
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  /* ===== bubble texture ===== */
+  .omr-row{display:flex; gap:10px;}
+  .omr-dot{
+    width:9px; height:9px; border-radius:50%;
+    border:1.4px solid currentColor;
+  }
+  .omr-dot.filled{background:currentColor;}
+
+  /* ===== nav ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(237,234,224,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{
+    width:34px; height:34px; border:1.6px solid var(--ink);
+    display:grid; place-items:center; font-family:'Fraunces',serif;
+    font-weight:700; font-size:15px; color:var(--ink); flex-shrink:0;
+  }
+  .brand-name{font-family:'Fraunces',serif; font-weight:600; font-size:17px; color:var(--ink);}
+  .brand-sub{font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--slate-soft);}
+  .navlinks{display:flex; gap:34px; font-size:14.5px; font-weight:500;}
+  .navlinks a{color:var(--slate); border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s;}
+  .navlinks a:hover{border-color:var(--gold);}
+  .nav-cta{
+    background:var(--ink); color:var(--paper); font-size:13.5px; font-weight:600;
+    padding:10px 20px; border:1px solid var(--ink);
+  }
+  .nav-cta:hover{background:transparent; color:var(--ink);}
+  @media(max-width:800px){.navlinks{display:none;}}
+
+  /* ===== hero ===== */
+  .hero{
+    background:var(--ink); color:var(--paper);
+    position:relative; overflow:hidden;
+    padding:76px 0 90px;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(237,234,224,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(237,234,224,0.045) 1px, transparent 1px);
+    background-size:34px 34px;
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative; display:grid; grid-template-columns:1.15fr 0.85fr;
+    gap:56px; align-items:start;
+  }
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:22px;
+  }
+  .eyebrow::before{content:"§"; opacity:.8;}
+  .hero h1{
+    font-size:clamp(34px,5vw,58px); line-height:1.06; color:#F4F1E7;
+    max-width:12.5ch;
+  }
+  .hero h1 em{font-style:italic; color:var(--gold); font-weight:500;}
+  .hero p.sub{
+    margin-top:22px; font-size:17px; max-width:46ch; color:#C7C9D6;
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--gold); color:var(--ink); font-weight:700; font-size:14.5px;
+    padding:14px 26px; border:1px solid var(--gold); transition:.2s;
+  }
+  .btn-primary:hover{background:transparent; color:var(--gold);}
+  .btn-ghost{
+    color:#F4F1E7; font-weight:600; font-size:14.5px; padding:14px 22px;
+    border:1px solid rgba(244,241,231,0.35); transition:.2s;
+  }
+  .btn-ghost:hover{border-color:#F4F1E7;}
+
+  /* admit card */
+  .admit-card{
+    background:var(--paper); color:var(--ink); position:relative;
+    padding:26px 26px 22px; border:1px solid rgba(18,25,43,0.15);
+    box-shadow:0 24px 60px rgba(0,0,0,0.35);
+  }
+  .admit-card::before, .admit-card::after{
+    content:""; position:absolute; width:22px; height:22px; border-radius:50%;
+    background:var(--ink); top:50%; transform:translateY(-50%);
+  }
+  .admit-card::before{left:-11px;}
+  .admit-card::after{right:-11px;}
+  .admit-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    border-bottom:1.4px dashed rgba(18,25,43,0.25); padding-bottom:16px; margin-bottom:16px;
+  }
+  .admit-label{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--slate-soft);}
+  .admit-title{font-family:'Fraunces',serif; font-weight:600; font-size:15px; margin-top:4px;}
+  .countdown{display:flex; gap:14px; margin:6px 0 4px;}
+  .cd-block{text-align:center;}
+  .cd-num{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:30px; color:var(--crimson); line-height:1;}
+  .cd-lbl{font-family:'JetBrains Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:0.07em; color:var(--slate-soft); margin-top:5px;}
+  .admit-row{display:flex; justify-content:space-between; font-size:12.5px; padding:9px 0; border-top:1px solid rgba(18,25,43,0.1);}
+  .admit-row span:first-child{color:var(--slate-soft);}
+  .admit-row span:last-child{font-weight:600;}
+  .omr-strip{margin-top:14px; color:var(--slate-soft);}
+  .omr-strip .omr-row{margin-bottom:5px;}
+
+  /* ===== marquee stats ===== */
+  .stats-bar{
+    background:var(--gold); color:var(--ink);
+    border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  }
+  .stats-grid{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    padding:26px 0;
+  }
+  @media(max-width:700px){.stats-grid{grid-template-columns:repeat(2,1fr); row-gap:20px;}}
+  .stat{text-align:center; border-left:1px solid rgba(18,25,43,0.25);}
+  .stat:first-child{border-left:none;}
+  .stat-num{font-family:'Fraunces',serif; font-weight:700; font-size:30px;}
+  .stat-lbl{font-size:12px; margin-top:4px; font-weight:600; letter-spacing:0.01em;}
+
+  /* ===== section shell ===== */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--gold-dim); margin-bottom:14px; display:block;
+  }
+  .section-head h2{font-size:clamp(26px,3.4vw,38px); line-height:1.15;}
+  .section-head p{margin-top:14px; font-size:15.5px; color:var(--slate-soft); max-width:52ch;}
+
+  /* about / intro */
+  .intro-block{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  @media(max-width:900px){.intro-block{grid-template-columns:1fr;}}
+  .intro-text p{font-size:16.5px; margin-bottom:16px; color:var(--slate);}
+  .intro-text p:first-child{font-size:19px; color:var(--ink); font-family:'Fraunces',serif; font-weight:500; line-height:1.4;}
+  .paper-frame{
+    background:var(--paper-2); border:1px solid var(--line); padding:30px;
+    position:relative;
+  }
+  .paper-frame .tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--gold-dim); margin-bottom:10px; display:block;
+  }
+  .paper-frame ul{list-style:none;}
+  .paper-frame li{
+    display:flex; gap:10px; padding:11px 0; border-top:1px solid var(--line); font-size:14.5px;
+  }
+  .paper-frame li:first-of-type{border-top:none;}
+  .paper-frame li b{color:var(--ink); font-weight:600;}
+
+  /* ===== courses (services) ===== */
+  .courses{background:var(--ink); color:var(--paper);}
+  .courses .section-eyebrow{color:var(--gold);}
+  .courses .section-head h2{color:#F4F1E7;}
+  .courses .section-head p{color:#B8BBCC;}
+  .course-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-light); border:1px solid var(--line-light);}
+  @media(max-width:800px){.course-grid{grid-template-columns:1fr;}}
+  .course-card{background:var(--ink); padding:34px;}
+  .course-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px;}
+  .course-sec{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold); letter-spacing:0.08em;}
+  .course-card h3{color:#F4F1E7; font-size:22px; margin-top:6px; margin-bottom:12px;}
+  .course-card p.desc{color:#B8BBCC; font-size:14.5px; margin-bottom:18px;}
+  .course-card ul{list-style:none;}
+  .course-card li{
+    font-size:13.5px; color:#D6D8E2; padding:8px 0; border-top:1px solid var(--line-light);
+    display:flex; gap:10px;
+  }
+  .course-card li:first-of-type{border-top:none;}
+  .course-card li::before{content:"✓"; color:var(--gold); font-weight:700; flex-shrink:0;}
+  .course-why{margin-top:16px; font-size:13px; color:var(--gold); font-style:italic;}
+
+  /* ===== results / trust ===== */
+  .rankcard-row{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:800px){.rankcard-row{grid-template-columns:1fr;}}
+  .rankcard{
+    background:var(--paper); border:1px solid var(--line); padding:26px; position:relative;
+  }
+  .rankcard::before{
+    content:attr(data-rank); position:absolute; top:22px; right:22px;
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold-dim);
+    background:rgba(226,154,60,0.12); padding:4px 9px; border:1px solid rgba(226,154,60,0.4);
+  }
+  .rankcard h4{font-size:17px; margin-bottom:4px; max-width:80%;}
+  .rankcard .stream{font-size:12.5px; color:var(--slate-soft); margin-bottom:14px;}
+  .rankcard p{font-size:14px; color:var(--slate);}
+
+  /* ===== CTA band ===== */
+  .cta-band{
+    background:var(--gold); color:var(--ink); text-align:center;
+    padding:74px 0; position:relative; overflow:hidden;
+  }
+  .cta-band h2{font-size:clamp(28px,4vw,42px); max-width:16ch; margin:0 auto 16px;}
+  .cta-band p{font-size:16px; max-width:46ch; margin:0 auto 30px; color:#3A2C10;}
+  .cta-band .btn-primary{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .cta-band .btn-primary:hover{background:transparent; color:var(--ink);}
+  .urgency-tag{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:12px;
+    letter-spacing:0.06em; text-transform:uppercase; background:var(--ink); color:var(--gold);
+    padding:6px 14px; margin-bottom:22px;
+  }
+
+  /* ===== footer ===== */
+  footer{background:var(--ink-2); color:#B8BBCC; padding:56px 0 32px;}
+  .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; margin-bottom:44px;}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr;}}
+  footer h4{color:#F4F1E7; font-size:13px; margin-bottom:16px; letter-spacing:0.04em;}
+  footer .brand-name{color:#F4F1E7;}
+  footer p.desc{font-size:14px; margin-top:14px; max-width:32ch; color:#9FA3B8;}
+  footer ul{list-style:none;}
+  footer li{font-size:14px; padding:6px 0; color:#B8BBCC;}
+  footer li a:hover{color:var(--gold);}
+  .footer-bottom{
+    border-top:1px solid var(--line-light); padding-top:22px; display:flex;
+    justify-content:space-between; font-size:12.5px; color:#7C8098; flex-wrap:wrap; gap:10px;
+  }
+
+  ::selection{background:var(--gold); color:var(--ink);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="brand-mark">AA</div>
+      <div>
+        <div class="brand-name">Apex NEET-JEE Academy</div>
+        <div class="brand-sub">Bangalore</div>
+      </div>
+    </div>
+    <nav class="navlinks">
+      <a href="#courses">Courses</a>
+      <a href="#results">Results</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Book Free Demo</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">NEET UG · JEE Main &amp; Advanced · Class 11–12</span>
+      <h1>Rank isn't luck.<br>It's a <em>system</em> — built one solved paper at a time.</h1>
+      <p class="sub">Apex trains a limited number of Class 11–12 students each year for NEET and JEE — with faculty who track your weak chapters weekly, not just at the end of the year.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#contact">Book a Free Demo Class →</a>
+        <a class="btn-ghost" href="#courses">See the Courses</a>
+      </div>
+    </div>
+
+    <div class="admit-card">
+      <div class="admit-top">
+        <div>
+          <div class="admit-label">Hall Ticket · Preview</div>
+          <div class="admit-title">Countdown to NEET UG</div>
+        </div>
+        <div class="omr-row" style="color:var(--ink)">
+          <span class="omr-dot filled"></span>
+          <span class="omr-dot"></span>
+          <span class="omr-dot"></span>
+        </div>
+      </div>
+
+      <div class="countdown" id="countdown">
+        <div class="cd-block"><div class="cd-num" id="cd-days">--</div><div class="cd-lbl">Days</div></div>
+        <div class="cd-block"><div class="cd-num" id="cd-hours">--</div><div class="cd-lbl">Hrs</div></div>
+        <div class="cd-block"><div class="cd-num" id="cd-mins">--</div><div class="cd-lbl">Min</div></div>
+      </div>
+
+      <div class="admit-row"><span>Target Exam</span><span>NEET UG 2027*</span></div>
+      <div class="admit-row"><span>Batch</span><span>Weekday Evening / Weekend</span></div>
+      <div class="admit-row"><span>Seats Left</span><span style="color:var(--crimson)">14 of 30</span></div>
+
+      <div class="omr-strip">
+        <div class="omr-row"><span class="omr-dot"></span><span class="omr-dot filled"></span><span class="omr-dot"></span><span class="omr-dot"></span></div>
+        <div class="omr-row"><span class="omr-dot"></span><span class="omr-dot"></span><span class="omr-dot filled"></span><span class="omr-dot"></span></div>
+        <div style="font-size:10px; color:var(--slate-soft); margin-top:6px; font-family:'JetBrains Mono',monospace;">*Indicative date, pending NTA notification</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="stat-num">340+</div><div class="stat-lbl">Students mentored</div></div>
+    <div class="stat"><div class="stat-num">91%</div><div class="stat-lbl">Cleared cutoff, 2026 batch</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-lbl">Full-time faculty</div></div>
+    <div class="stat"><div class="stat-num">18</div><div class="stat-lbl">Yrs teaching NEET/JEE</div></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap intro-block">
+    <div class="paper-frame">
+      <span class="tag">Why Students Switch to Apex</span>
+      <ul>
+        <li><b>Weekly diagnostics —</b> not just monthly tests. You know your weak chapter this week, not in March.</li>
+        <li><b>12-student mentor pods —</b> so faculty actually know your name and your mistakes.</li>
+        <li><b>Faculty who only teach NEET/JEE —</b> no school-syllabus generalists.</li>
+        <li><b>Parent progress reports —</b> sent every Sunday, no chasing required.</li>
+      </ul>
+    </div>
+    <div class="intro-text">
+      <p>Most coaching centres in Bangalore sell you a seat in a hall. Apex sells you a plan for your specific rank target — and rebuilds that plan every week based on your actual test data.</p>
+      <p>We keep batches small on purpose. Founded by former NEET and JEE faculty who were tired of teaching to a back row of 90 students, Apex runs pods of 12, so every doubt gets answered inside the class — not in a queue after it.</p>
+      <p>If your child is serious about a medical or engineering seat — not just attending classes, but actually improving their rank — this is built for that specific goal.</p>
+    </div>
+  </div>
+</section>
+
+<section class="courses" id="courses">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">Services</span>
+      <h2>Choose the track that matches your target exam</h2>
+      <p>Every course includes weekly tests, doubt-clearing sessions, and a personal rank-tracking sheet updated after every paper.</p>
+    </div>
+
+    <div class="course-grid">
+      <div class="course-card">
+        <div class="course-head"><span class="course-sec">NEET UG</span></div>
+        <h3>Physics · Chemistry · Biology</h3>
+        <p class="desc">For Class 11–12 students targeting a medical seat. Built around NCERT depth with NEET-pattern application.</p>
+        <ul>
+          <li>Chapter-wise NCERT-aligned modules</li>
+          <li>Biology-heavy weightage, matched to NEET's pattern</li>
+          <li>Weekly full-syllabus mock tests from Class 12</li>
+        </ul>
+        <div class="course-why">Why students choose this: the biology diagrams are taught, not just read.</div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-head"><span class="course-sec">JEE MAIN / ADVANCED</span></div>
+        <h3>Physics · Chemistry · Mathematics</h3>
+        <p class="desc">For students targeting IITs, NITs and top engineering colleges. Concept-first, then speed.</p>
+        <ul>
+          <li>Problem-solving labs, not just lecture hours</li>
+          <li>Advanced-level problem sets from Class 11</li>
+          <li>JEE Main mock every Sunday, JEE Advanced monthly</li>
+        </ul>
+        <div class="course-why">Why students choose this: faculty show the working, not just the answer key.</div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-head"><span class="course-sec">FOUNDATION</span></div>
+        <h3>Class 11 Foundation Track</h3>
+        <p class="desc">For students starting early who want a two-year runway instead of a one-year sprint.</p>
+        <ul>
+          <li>Builds NCERT fundamentals before speed drills</li>
+          <li>Monthly parent-teacher review calls</li>
+          <li>Smooth transition into the Class 12 intensive track</li>
+        </ul>
+        <div class="course-why">Why students choose this: no burnout by January of Class 12.</div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-head"><span class="course-sec">CRASH COURSE</span></div>
+        <h3>90-Day Repeater &amp; Crash Track</h3>
+        <p class="desc">For repeaters and last-lap students who need focused revision, not a full syllabus repeat.</p>
+        <ul>
+          <li>High-yield chapter prioritisation</li>
+          <li>Daily previous-year-question drills</li>
+          <li>One-on-one weak-chapter clinics</li>
+        </ul>
+        <div class="course-why">Why students choose this: it's built for the last 90 days, not the last 2 years.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">Trust</span>
+      <h2>Recent rank cards from Apex students</h2>
+      <p>A small sample of results from the 2026 batch — shared with permission from students and parents.</p>
+    </div>
+    <div class="rankcard-row">
+      <div class="rankcard" data-rank="AIR 2,140"><h4>Medical seat, govt college</h4><div class="stream">NEET UG 2026</div><p>"Weekly tests meant I fixed my organic chemistry gap in October, not April."</p></div>
+      <div class="rankcard" data-rank="AIR 8,760"><h4>NIT admit, CSE</h4><div class="stream">JEE Main 2026</div><p>"The Sunday mocks felt harder than the real thing. That's why the real thing felt easy."</p></div>
+      <div class="rankcard" data-rank="99.1 %ile"><h4>Foundation batch, Class 11→12</h4><div class="stream">JEE Main 2026</div><p>"Started in Class 11 with the foundation track — never had to cram."</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <div class="wrap">
+    <span class="urgency-tag">Only 14 seats left in the next batch</span>
+    <h2>Book a free demo class this week</h2>
+    <p>Sit in on a real Physics, Chemistry or Biology session, meet the faculty, and get a diagnostic test to see exactly where your rank stands today.</p>
+    <div class="hero-ctas" style="justify-content:center; display:flex; gap:14px;">
+      <a class="btn-primary" href="tel:+919482663438">Call +91 94826 63438</a>
+      <a class="btn-ghost" style="color:var(--ink); border-color:rgba(18,25,43,0.4);" href="mailto:hello@apexneetjee.example">Talk to a Counsellor</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-name" style="font-family:'Fraunces',serif; font-weight:600; font-size:18px;">Apex NEET-JEE Academy</div>
+        <p class="desc">A focused coaching studio in Bangalore for Class 11–12 students preparing for NEET UG and JEE Main/Advanced.</p>
+      </div>
+      <div>
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#courses">NEET UG Track</a></li>
+          <li><a href="#courses">JEE Main / Advanced</a></li>
+          <li><a href="#courses">Class 11 Foundation</a></li>
+          <li><a href="#courses">90-Day Crash Course</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit / Contact</h4>
+        <ul>
+          <li>MSR Nagar, Bangalore, Karnataka</li>
+          <li>+91 94826 63438</li>
+          <li>hello@apexneetjee.example</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Apex NEET-JEE Academy. All rights reserved.</span>
+      <span>Sample site built for a Prompt Engineering portfolio project.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Countdown to an indicative NEET UG date (first Sunday of May, next year if past)
+  function getTargetDate(){
+    const now = new Date();
+    let year = now.getMonth() > 4 ? now.getFullYear() + 1 : now.getFullYear();
+    let d = new Date(year, 4, 1); // May 1
+    while(d.getDay() !== 0){ d.setDate(d.getDate()+1); } // first Sunday
+    return d;
+  }
+  const target = getTargetDate();
+  function tick(){
+    const now = new Date();
+    let diff = Math.max(0, target - now);
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const mins = Math.floor((diff / (1000*60)) % 60);
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 30000);
+</script>
+
+</body>
+</html>
